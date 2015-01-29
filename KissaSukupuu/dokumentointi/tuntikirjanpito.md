@@ -10,6 +10,11 @@ Noin 3,5h ensimmäisten luokkien ja niiden testiluokkien luomista ja testaamista
 
 ######22.1.2015
 
-Koodia + JUnit testejä 50min
+Koodia + JUnit testejä 
 Pit raportin kanssa säheltämistä 25min
 Luokkakaavio 15min (oli kyllä ideoitu jo aiemmin, toteutus 15min)
+
+######29.1.2015
+
+1,5h luokkien ja testiluokkien parissa (väriin liittyvät luokat).
+
