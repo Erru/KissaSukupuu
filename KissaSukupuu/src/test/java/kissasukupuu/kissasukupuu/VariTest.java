@@ -9,7 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class TestaaVari {
+public class VariTest {
     Vari vari;
     
     @Before
@@ -26,6 +26,12 @@ public class TestaaVari {
     public void getPohjavariToimiiIlmanVaria(){
         vari = new Vari("X");
         assertEquals("X", vari.getPohjavari());
+    }
+    
+    @Test
+    public void getPohjavariToimiiIlmanKuviota(){
+        vari = new Vari("n");
+        assertEquals("n", vari.getPohjavari());
     }
     
     @Test

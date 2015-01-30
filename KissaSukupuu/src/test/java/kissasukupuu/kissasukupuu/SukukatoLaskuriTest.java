@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
-public class TestaaSukukatoLaskuri {
+public class SukukatoLaskuriTest {
     SukukatoLaskuri laskuri;
     ArrayList<Kissa> kissat;
     
