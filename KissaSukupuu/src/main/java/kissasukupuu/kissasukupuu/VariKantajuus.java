@@ -94,7 +94,7 @@ public class VariKantajuus {
     }
     
     public boolean kantaaTaysvaria(){
-        this.kantaaTaysvaria();
+        this.kantaakoTaysvaria();
         return this.taysvari;
     }
     
@@ -109,7 +109,7 @@ public class VariKantajuus {
     }
     
     public boolean kantaaKuviollisuutta(){
-        this.kantaaKuviollisuutta();
+        this.kantaakoKuviollisuutta();
         return this.kuviollisuus;
     }
     

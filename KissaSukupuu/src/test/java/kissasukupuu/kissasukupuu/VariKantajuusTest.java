@@ -15,19 +15,18 @@ public class VariKantajuusTest {
     
     @Before
     public void setUp() {
-        Kissa kissa = new Kissa("kisu");
+        Kissa kissa = new Kissa("kisu", "kolli", "katti");
         kissa.lisaaVari("n 24");
-        kissa.lisaaEmo("katti");
         kissa.getEmo().lisaaVari("n");
-        kissa.lisaaIsa("kolli");
         kissa.getIsa().lisaaVari("e 22");
         kannettavat = new VariKantajuus(kissa);
     }
     
-    //@Test
-    //public void kantaakoTaysvariaToimii(){
-    //    assertEquals(true, kannettavat.kantaaTaysvaria());
+    @Test
+    public void kantaakoTaysvariaToimii(){
+        boolean arvo = kannettavat.kantaaTaysvaria();
+        assertEquals(true, arvo);
         //ei toimi jostain syystä, stack over flow error
-    //}
+    }
     
 }
