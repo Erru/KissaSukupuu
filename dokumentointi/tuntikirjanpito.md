@@ -22,3 +22,6 @@ Luokkakaavio 15min (oli kyllä ideoitu jo aiemmin, toteutus 15min)
 
 30min pit raporttiin ja luokkakaavioon.
 
+######4.2.2015
+20min VariKantajuus testeihin. Ti 3.2. joku vartti testiongelman ratkomiseen.
+
