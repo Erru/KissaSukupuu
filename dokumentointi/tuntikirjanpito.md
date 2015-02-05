@@ -25,3 +25,5 @@ Luokkakaavio 15min (oli kyllä ideoitu jo aiemmin, toteutus 15min)
 ######4.2.2015
 20min VariKantajuus testeihin. Ti 3.2. joku vartti testiongelman ratkomiseen.
 
+######5.2.2015
+Käyttöliittymän suunnittelua ja koodausta 3h 10min. JavaDoc aloittelua 20min.
