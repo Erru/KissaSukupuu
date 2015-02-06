@@ -15,10 +15,25 @@ public class PentujenVaritTest {
    
     @Before
     public void setUp() {
-        emo = new Kissa("katti");
-        isa = new Kissa("kolli");
+        emo = new Kissa("katti", "eIsä", "eEmo");
+        isa = new Kissa("kolli", "iIsä", "iEmo");
+        emo.lisaaVari("n 24");
+        emo.getIsa().lisaaVari("a 22");
+        emo.getEmo().lisaaVari("n");
+        isa.lisaaVari("e");
+        isa.getIsa().lisaaVari("d 22");
+        isa.getEmo().lisaaVari("f 23");
         pennut = new PentujenVarit(emo, isa);
     }
     
+    @Test
+    public void voiTullaKuviollisiaToimii(){
+        assertEquals(true, pennut.kuviollisia());
+    }
+    
+    @Test
+    public void voiTullaKuviottomiaToimii(){
+        assertEquals(true, pennut.kuviottomia());
+    }
     
 }

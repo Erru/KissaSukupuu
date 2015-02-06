@@ -1,6 +1,14 @@
 
 package kissasukupuu.kissasukupuu;
 
+/**
+ * Luokka mitä värejä annettu kissa kantaa käyttäen apumaan dominoivissa väreissä
+ * kissaa itseään ja resessiivisten värien kanssa myös kissan vanhempia. Kertoo
+ * vain mitä värejä kissa varmasti kantaa (resessiiviset värit voivat tulla
+ * monen sukupolven takaa).
+ * 
+ */
+
 public class VariKantajuus {
     Kissa kantaja;
     Kissa isa;
@@ -58,6 +66,9 @@ public class VariKantajuus {
     }
     
     public void kantaakoDiluutiota(){
+        this.haeVanhemmat();
+        this.haeVarit();
+        this.erotteleKuvioJaVari();
         if(kPohjavari.contains("a") || kPohjavari.contains("e") || kPohjavari.contains("g")){
             this.diluutio = true;
         } else if (iPohjavari.contains("a") || iPohjavari.contains("e")){
@@ -70,6 +81,9 @@ public class VariKantajuus {
     }
     
     public void kantaakoKuviottomuutta(){
+        this.haeVanhemmat();
+        this.haeVarit();
+        this.erotteleKuvioJaVari();
         if(kKuvio.equals("kuvioton")||iKuvio.equals("kuvioton")||eKuvio.equals("kuvioton")){
             this.kuviottomuus = true;
         } else {
@@ -78,14 +92,20 @@ public class VariKantajuus {
     }
     
     public void kantaakoKuviollisuutta(){
-        if(kKuvio.equals("22")||iKuvio.equals("23")||eKuvio.equals("24")){
-            this.kuviottomuus = true;
+        this.haeVanhemmat();
+        this.haeVarit();
+        this.erotteleKuvioJaVari();
+        if(!kKuvio.equals("kuvioton")){
+            this.kuviollisuus = true;
         } else {
-            this.kuviottomuus = false;
+            this.kuviollisuus = false;
         }
     }
     
     public void kantaakoKlassistaTabbyKuviota(){
+        this.haeVanhemmat();
+        this.haeVarit();
+        this.erotteleKuvioJaVari();
         if(kKuvio.contains("22")||iKuvio.contains("22")||eKuvio.contains("22")){
             this.tabbykuvio = true;
         } else {
@@ -94,7 +114,7 @@ public class VariKantajuus {
     }
     
     public boolean kantaaTaysvaria(){
-        this.kantaaTaysvaria();
+        this.kantaakoTaysvaria();
         return this.taysvari;
     }
     
@@ -109,7 +129,7 @@ public class VariKantajuus {
     }
     
     public boolean kantaaKuviollisuutta(){
-        this.kantaaKuviollisuutta();
+        this.kantaakoKuviollisuutta();
         return this.kuviollisuus;
     }
     
@@ -117,5 +137,7 @@ public class VariKantajuus {
         this.kantaakoKlassistaTabbyKuviota();;
         return this.tabbykuvio;
     }
+    
+    
     
 }

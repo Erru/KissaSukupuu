@@ -1,5 +1,10 @@
 package kissasukupuu.kissasukupuu;
 
+/**
+ * Luokka tallettaa kissalle nimen, vanhemmat, varin, rodun ja sukupuolen,
+ * jotta ne voidaan näyttää sukutaulussa ja värien kantajuudet voidaan määrittää
+ * pentujen värien ennustamiseksi.
+ */
 
 public class Kissa {
     Kissa isa;

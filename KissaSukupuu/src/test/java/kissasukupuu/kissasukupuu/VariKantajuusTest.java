@@ -24,10 +24,29 @@ public class VariKantajuusTest {
         kannettavat = new VariKantajuus(kissa);
     }
     
-    //@Test
-    //public void kantaakoTaysvariaToimii(){
-    //    assertEquals(true, kannettavat.kantaaTaysvaria());
-        //ei toimi jostain syystä, stack over flow error
-    //}
+    @Test
+    public void kantaakoTaysvariaToimii(){
+        assertEquals(true, kannettavat.kantaaTaysvaria());
+    }
+    
+    @Test
+    public void kantaakoDiluutiotaToimii(){
+        assertEquals(true, kannettavat.kantaaDiluutiota());
+    }
+    
+    @Test
+    public void kantaakoKuviottomuuttaToimii(){
+        assertEquals(true, kannettavat.kantaaKuviottomuutta());
+    }
+    
+    @Test
+    public void kantaakoKuviollisuuttaToimii(){
+        assertEquals(true, kannettavat.kantaaKuviollisuutta());
+    }
+    
+    @Test
+    public void kantaakoTabbyaToimii(){
+        assertEquals(true, kannettavat.kantaaTabbya());
+    }
     
 }

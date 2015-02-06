@@ -1,13 +1,24 @@
 
 package kissasukupuu.kissasukupuu;
 
+/**
+ * Osaa erotella EMS koodin mukaisesti annetusta väristä pohjavärin ja kuvion.
+ * Käytetään hyväksi värikantajuuksien selvittämiseksi ja testiastutuksen
+ * pentujen värien ennustamiseksi.
+ */
+
 public class Vari {
     String vari;
     
     public Vari(String vari){
         this.vari = vari;
     }
-    
+    /**
+     * Pilkkoo kaksiosaisen värin pohjaväriin ja kuvioon ja palauttaa pohjavärin.
+     * Mikäli väriä ei ole asetettu, palauttaa määrittelemättömän värin eli "X".
+     * 
+     * @return pohjaväri eroteltuna kokonaisväristä
+     */
     public String getPohjavari(){
         if(!vari.equals("X")){
             String[] parts = vari.split(" ");

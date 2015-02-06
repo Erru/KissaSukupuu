@@ -3,6 +3,10 @@ package kissasukupuu.kissasukupuu;
 
 import java.util.ArrayList;
 
+/**
+ * Laskee sukupuusta kissan tai testiastutuksen sukukatokertoimen yhdistelmän
+ * arviointia varten. 0.9-1 on tavoiteltava tilanne.
+ */
 
 public class SukukatoLaskuri {
     ArrayList<Kissa> kissat;
@@ -13,6 +17,11 @@ public class SukukatoLaskuri {
         //tyhjä, jotta samaa laskuria voidaan käyttää eri sukupuissa
     }
     
+    /**
+     * Ottaa vastaan kissalistan ja poimii siltä uniikit kissat nimen perusteella.
+     * 
+     * @param lista sukutaulussa esiintyvistä kissoista
+     */
     public void uniikitNimet(ArrayList<Kissa> lista){
         this.kissat = lista;
          this.nimet= new ArrayList<>();

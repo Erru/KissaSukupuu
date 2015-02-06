@@ -1,6 +1,11 @@
 
 package kissasukupuu.kissasukupuu;
 
+/**
+ * Luokka auttaa määrittämään minkä värisiä pentuja voi tulla käyttäen hyväkseen
+ * värikantajuustietoja kissoista. Käytetään testiastutuksen yhteydessä.
+ * 
+ */
 
 public class PentujenVarit {
     Kissa emo;
@@ -65,5 +70,15 @@ public class PentujenVarit {
         } else {
             this.tabby = false;
         }
+    }
+    
+    public boolean kuviollisia(){
+        this.voiTullaKuviollisia();
+        return this.kuviollinen;
+    }
+    
+    public boolean kuviottomia(){
+        this.voiTullaKuviottomia();
+        return this.kuvioton;
     }
 }
