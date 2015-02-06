@@ -18,3 +18,12 @@ Luokkakaavio 15min (oli kyllä ideoitu jo aiemmin, toteutus 15min)
 
 1,5h luokkien ja testiluokkien parissa (väriin liittyvät luokat).
 
+######30.1.2015
+
+30min pit raporttiin ja luokkakaavioon.
+
+######4.2.2015
+20min VariKantajuus testeihin. Ti 3.2. joku vartti testiongelman ratkomiseen.
+
+######5.2.2015
+Käyttöliittymän suunnittelua ja koodausta 3h 10min. JavaDoc aloittelua 20min.
