@@ -27,3 +27,6 @@ Luokkakaavio 15min (oli kyllä ideoitu jo aiemmin, toteutus 15min)
 
 ######5.2.2015
 Käyttöliittymän suunnittelua ja koodausta 3h 10min. JavaDoc aloittelua 20min.
+
+######8.2.2015
+2h Käyttöliittymän suunnitteluun ja toteutukseen.
