@@ -30,3 +30,6 @@ Käyttöliittymän suunnittelua ja koodausta 3h 10min. JavaDoc aloittelua 20min.
 
 ######8.2.2015
 2h Käyttöliittymän suunnitteluun ja toteutukseen.
+
+######10.2.2015
+2h 45min käyttöliittymän toiminnallisuuden lisäystä (HaeKissa luokka).
