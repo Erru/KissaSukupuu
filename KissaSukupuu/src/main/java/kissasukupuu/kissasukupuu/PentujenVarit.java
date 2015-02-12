@@ -32,6 +32,11 @@ public class PentujenVarit {
         isan = new VariKantajuus(isa);
     }
     
+    /**
+     * Hakee kantaako emo tai isä kuviollisuutta ja määrittää tämän perusteella
+     * voiko pennuista tulla kuviollisia asettaen totuusarvon.
+     */
+    
     public void voiTullaKuviollisia(){
         if(emon.kantaaKuviollisuutta() == true || isan.kantaaKuviollisuutta() == true){
             this.kuviollinen = true;
@@ -39,6 +44,11 @@ public class PentujenVarit {
             this.kuviollinen = false;
         }
     }
+    
+    /**
+     * Hakee kantaako emo tai isä kuviollisuutta ja määrittää tämän perusteella
+     * voiko pennuista tulla kuviottomia.
+     */
     
     public void voiTullaKuviottomia(){
         if(emon.kantaaKuviottomuutta() == true && isan.kantaaKuviottomuutta() == true){
@@ -48,6 +58,11 @@ public class PentujenVarit {
         }
     }
     
+    /**
+     * Hakee kantaako emo tai isä diluutiota ja määrittää tämän perusteella voiko
+     * pennuista tulla diluutiovärisiä.
+     */
+    
     public void voiTullaDiluutiota(){
         if(emon.kantaaDiluutiota() == true && isan.kantaaDiluutiota() == true){
             this.diluutio = true;
@@ -56,6 +71,11 @@ public class PentujenVarit {
         }
     }
     
+    /**
+     * Hakee kantaako emo tai isä täysväriä (diluution vastakohta) ja määrittää
+     * tämän perusteella voiko pennuista tulla täysvärisiä.
+     */
+    
     public void voiTullaTaysvarisia(){
         if(emon.kantaaTaysvaria() == true || isan.kantaaTaysvaria() == true){
             this.taysvari = true;
@@ -63,6 +83,11 @@ public class PentujenVarit {
             this.taysvari = false;
         }
     }
+    
+    /**
+     * Hakee kantaako emo tai isä klassista tabby -kuviota ja määrittää tämän
+     * perusteella voiko pennuista tulla tabby-kuvioisia.
+     */
     
     public void voiTullaKlassistaTabbya(){
         if(emon.kantaaTabbya() == true && isan.kantaaTabbya()){
@@ -80,5 +105,20 @@ public class PentujenVarit {
     public boolean kuviottomia(){
         this.voiTullaKuviottomia();
         return this.kuvioton;
+    }
+    
+    public boolean diluutioita(){
+        this.voiTullaDiluutiota();
+        return this.diluutio;
+    }
+    
+    public boolean taysvari(){
+        this.voiTullaTaysvarisia();
+        return this.taysvari;
+    }
+    
+    public boolean klassinenTabby(){
+        this.voiTullaKlassistaTabbya();
+        return this.tabby;
     }
 }

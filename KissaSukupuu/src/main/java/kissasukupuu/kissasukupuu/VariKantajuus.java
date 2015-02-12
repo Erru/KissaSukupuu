@@ -32,16 +32,28 @@ public class VariKantajuus {
         this.kantaja = kissa;
     }
     
+    /**
+     * Hakee annetun kissan vanhemmat.
+     */
+    
     public void haeVanhemmat(){
         isa = kantaja.getIsa();
         emo = kantaja.getEmo();
     }
+    
+    /**
+     * Hakee kissan ja sen vanhempien värit.
+     */
     
     public void haeVarit(){
         this.kVari = kantaja.getVari();
         this.iVari = isa.getVari();
         this.eVari = emo.getVari();
     }
+    
+    /**
+     * Erottelee kissojen pohjavärin ja kuvion erilleen.
+     */
     
     public void erotteleKuvioJaVari(){
         kPohjavari = kVari.getPohjavari();
@@ -54,6 +66,10 @@ public class VariKantajuus {
         eKuvio = eVari.getKuvio();
     }
     
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta.
+     */
+    
     public void kantaakoTaysvaria(){
         this.haeVanhemmat();
         this.haeVarit();
@@ -64,6 +80,10 @@ public class VariKantajuus {
             this.taysvari = false;
         }
     }
+    
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta.
+     */
     
     public void kantaakoDiluutiota(){
         this.haeVanhemmat();
@@ -80,6 +100,10 @@ public class VariKantajuus {
         }
     }
     
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta.
+     */
+    
     public void kantaakoKuviottomuutta(){
         this.haeVanhemmat();
         this.haeVarit();
@@ -91,6 +115,10 @@ public class VariKantajuus {
         }
     }
     
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta.
+     */
+    
     public void kantaakoKuviollisuutta(){
         this.haeVanhemmat();
         this.haeVarit();
@@ -101,6 +129,10 @@ public class VariKantajuus {
             this.kuviollisuus = false;
         }
     }
+    
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta.
+     */
     
     public void kantaakoKlassistaTabbyKuviota(){
         this.haeVanhemmat();

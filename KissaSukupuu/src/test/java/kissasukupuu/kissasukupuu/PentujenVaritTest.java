@@ -36,4 +36,19 @@ public class PentujenVaritTest {
         assertEquals(true, pennut.kuviottomia());
     }
     
+    @Test
+    public void voiTullaDiluutiotaToimii(){
+        assertEquals(true, pennut.diluutioita());
+    }
+    
+    @Test
+    public void voiTullaTaysvarisiaToimii(){
+        assertEquals(true, pennut.taysvari());
+    }
+    
+    @Test
+    public void voiTullaKlassistaTabbyaToimii(){
+        assertEquals(true, pennut.klassinenTabby());
+    }
+    
 }

@@ -24,7 +24,6 @@ public class VariKantajuusTest {
     
     @Test
     public void kantaakoTaysvariaToimii(){
-<<<<<<< HEAD
         assertEquals(true, kannettavat.kantaaTaysvaria());
     }
     
@@ -46,11 +45,8 @@ public class VariKantajuusTest {
     @Test
     public void kantaakoTabbyaToimii(){
         assertEquals(true, kannettavat.kantaaTabbya());
-=======
         boolean arvo = kannettavat.kantaaTaysvaria();
         assertEquals(true, arvo);
-        //ei toimi jostain syystä, stack over flow error
->>>>>>> 15185251162f135c73e9ee8c1df198ced2aa1787
     }
     
 }
