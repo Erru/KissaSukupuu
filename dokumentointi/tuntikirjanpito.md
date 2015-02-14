@@ -36,3 +36,6 @@ Käyttöliittymän suunnittelua ja koodausta 3h 10min. JavaDoc aloittelua 20min.
 
 ######12.2.2015
 n. 50min parantelin luokkia ja testiluokkia, n. 15min javadocia, n. 30min sekvenssikaavioita ja pit raportti vielä.
+
+######14.2.2015
+n. 2h 35min HaeKissa luokkaa ja PieniMuisti luokkaa, jotta voisi testata toimiiko HaeKissa oikein myös pidemmällä sukupuussa.
