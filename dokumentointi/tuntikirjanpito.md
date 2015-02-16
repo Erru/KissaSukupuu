@@ -39,3 +39,6 @@ n. 50min parantelin luokkia ja testiluokkia, n. 15min javadocia, n. 30min sekven
 
 ######14.2.2015
 n. 2h 35min HaeKissa luokkaa ja PieniMuisti luokkaa, jotta voisi testata toimiiko HaeKissa oikein myös pidemmällä sukupuussa.
+
+######16.2.2015
+n. 1,5h toiminnallisuutta käyttöliittymään (LisaaKissa ja LisaaTieto).
