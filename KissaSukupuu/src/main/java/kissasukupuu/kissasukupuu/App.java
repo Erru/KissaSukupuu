@@ -10,13 +10,6 @@ public class App
         Kayttoliittyma kayttoliittyma = new Kayttoliittyma(kissat);
         SwingUtilities.invokeLater(kayttoliittyma);
         
-        Kissa kisu1 = new Kissa("Minttunen", "isukki", "mamma");
-        kisu1.lisaaSukupuoli("F");
-        kisu1.lisaaRotu("EUR");
-        kisu1.lisaaVari("fs 24");
-        
-        kissat.lisaaKissa(kisu1);
-        kissat.lisaaKissa(kisu1.getIsa());
-        kissat.lisaaKissa(kisu1.getEmo());
+        PieniMuisti muisti = new PieniMuisti(kissat);
     }
 }

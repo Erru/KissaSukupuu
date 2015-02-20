@@ -45,8 +45,17 @@ public class Kissa {
      * @param nimi 
      */
     
-    public void lisaaIsa(String nimi){
+    public void lisaaIsaNimella(String nimi){
         this.isa = new Kissa(nimi);
+    }
+    
+    /**
+     * Asettaa kissalle jo olemassa olevan isän.
+     * @param kissa 
+     */
+    
+    public void lisaaIsa(Kissa kissa){
+        this.isa = kissa;
     }
     
     /**
@@ -54,8 +63,17 @@ public class Kissa {
      * @param nimi 
      */
     
-    public void lisaaEmo(String nimi){
+    public void lisaaEmoNimella(String nimi){
         this.emo = new Kissa(nimi);
+    }
+    
+    /**
+     * Asettaa kissalle jo olemassa olevan emon.
+     * @param kissa 
+     */
+    
+    public void lisaaEmo(Kissa kissa){
+        this.emo = kissa;
     }
     
     /**

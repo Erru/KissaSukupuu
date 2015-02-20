@@ -31,14 +31,14 @@ public class KissaTest {
     }
     
     @Test
-    public void lisaaIsaToimii(){
-        kissa.lisaaIsa("kolli");
+    public void lisaaIsaNimellaToimii(){
+        kissa.lisaaIsaNimella("kolli");
         assertEquals("kolli", kissa.getIsa().getNimi());
     }
     
     @Test
-    public void lisaaEmoToimii(){
-        kissa.lisaaEmo("katti");
+    public void lisaaEmoNimellaToimii(){
+        kissa.lisaaEmoNimella("katti");
         assertEquals("katti", kissa.getEmo().getNimi());
     }
     

@@ -28,13 +28,42 @@ public class Kayttoliittyma implements Runnable {
     JLabel vasenreuna;
     
     //keskus
+    //col1
     JButton kissa;
+    //col2
     JButton isa1;
     JButton emo1;
+    //col3
     JButton isa2_1;
     JButton emo2_1;
     JButton isa2_2;
     JButton emo2_2;
+    //col4
+    JButton isa3_1;
+    JButton emo3_1;
+    JButton isa3_2;
+    JButton emo3_2;
+    JButton isa3_3;
+    JButton emo3_3;
+    JButton isa3_4;
+    JButton emo3_4;
+    //col5
+    JButton isa4_1;
+    JButton emo4_1;
+    JButton isa4_2;
+    JButton emo4_2;
+    JButton isa4_3;
+    JButton emo4_3;
+    JButton isa4_4;
+    JButton emo4_4;
+    JButton isa4_5;
+    JButton emo4_5;
+    JButton isa4_6;
+    JButton emo4_6;
+    JButton isa4_7;
+    JButton emo4_7;
+    JButton isa4_8;
+    JButton emo4_8;
     
 
     public Kayttoliittyma(Kissat kissat) {
@@ -49,6 +78,30 @@ public class Kayttoliittyma implements Runnable {
         emo2_1 = new JButton("emo2_1");
         isa2_2 = new JButton("isa2_2");
         emo2_2 = new JButton("emo2_2");
+        isa3_1 = new JButton("isa3_1");
+        emo3_1 = new JButton("emo3_1");
+        isa3_2 = new JButton("isa3_2");
+        emo3_2 = new JButton("emo3_2");
+        isa3_3 = new JButton("isa3_3");
+        emo3_3 = new JButton("emo3_3");
+        isa3_4 = new JButton("isa3_4");
+        emo3_4 = new JButton("emo3_4");
+        isa4_1 = new JButton("isa4_1");
+        emo4_1 = new JButton("emo3_1");
+        isa4_2 = new JButton("isa4_2");
+        emo4_2 = new JButton("emo4_2");
+        isa4_3 = new JButton("isa4_3");
+        emo4_3 = new JButton("emo4_3");
+        isa4_4 = new JButton("isa4_4");
+        emo4_4 = new JButton("emo4_4");
+        isa4_5 = new JButton("isa4_5");
+        emo4_5 = new JButton("emo4_5");
+        isa4_6 = new JButton("isa4_6");
+        emo4_6 = new JButton("emo4_6");
+        isa4_7 = new JButton("isa4_7");
+        emo4_7 = new JButton("emo4_7");
+        isa4_8 = new JButton("isa4_8");
+        emo4_8 = new JButton("<html>" + "emo4_8" + "<br>" + "F, EUR X XX" + "</html>");
         
     }
 
@@ -91,7 +144,6 @@ public class Kayttoliittyma implements Runnable {
     private JPanel luoVasenSivu(){
         JPanel panel = new JPanel(new GridLayout(1,1));
         
-        
         panel.add(vasenreuna);
         
         return panel;
@@ -118,10 +170,19 @@ public class Kayttoliittyma implements Runnable {
         JButton lisaaK = new JButton("Lisää uusi kissa");
         JButton lisaaT = new JButton("Lisää tietoja kissalle");
         
-        //miten tällaiseen saa komponentteja kahdesta panelista? haluan col1 kissa
-        //JButtonin, en hakunappulaa tähän
+        LisaaKissa lisaaja = new LisaaKissa(kNimi, iNimi, eNimi, kRotu, kVari, 
+                fm, this.kissat);
+        lisaaK.addActionListener(lisaaja);
+        
+        LisaaTieto tietolisaaja = new LisaaTieto(kNimi, iNimi, eNimi, kRotu, kVari,
+                fm, this.kissat);
+        lisaaT.addActionListener(tietolisaaja);
+        
         HaeKissa hakija = new HaeKissa(this.kissat,haku, this.kissa, this.isa1, 
-                this.emo1, this.isa2_1, this.emo2_1, this.isa2_2, this.emo2_2);
+                this.emo1, this.isa2_1, this.emo2_1, this.isa2_2, this.emo2_2, 
+                isa3_1, emo3_1, isa3_2, emo3_2, isa3_3, emo3_3, isa3_4, emo3_4, 
+                isa4_1, emo4_1, isa4_2, emo4_2, isa4_3, emo4_3, isa4_4, emo4_4,
+                isa4_5, emo4_5, isa4_6, emo4_6, isa4_7, emo4_7, isa4_8, emo4_8);
         hae.addActionListener(hakija);
         
         panel.add(hae);
@@ -188,15 +249,6 @@ public class Kayttoliittyma implements Runnable {
     private JPanel luoCol4(){
         JPanel panel = new JPanel(new GridLayout(8,1));
         
-        JButton isa3_1 = new JButton("isa3_1");
-        JButton emo3_1 = new JButton("emo3_1");
-        JButton isa3_2 = new JButton("isa3_2");
-        JButton emo3_2 = new JButton("emo3_2");
-        JButton isa3_3 = new JButton("isa3_3");
-        JButton emo3_3 = new JButton("emo3_3");
-        JButton isa3_4 = new JButton("isa3_4");
-        JButton emo3_4 = new JButton("emo3_4");
-        
         panel.add(isa3_1);
         panel.add(emo3_1);
         panel.add(isa3_2);
@@ -211,24 +263,6 @@ public class Kayttoliittyma implements Runnable {
     
     private JPanel luoCol5(){
         JPanel panel = new JPanel(new GridLayout(16,1));
-        
-        JButton isa4_1 = new JButton("isa4_1");
-        JButton emo4_1 = new JButton("emo3_1");
-        JButton isa4_2 = new JButton("isa4_2");
-        JButton emo4_2 = new JButton("emo4_2");
-        JButton isa4_3 = new JButton("isa4_3");
-        JButton emo4_3 = new JButton("emo4_3");
-        JButton isa4_4 = new JButton("isa4_4");
-        JButton emo4_4 = new JButton("emo4_4");
-        JButton isa4_5 = new JButton("isa4_5");
-        JButton emo4_5 = new JButton("emo4_5");
-        JButton isa4_6 = new JButton("isa4_6");
-        JButton emo4_6 = new JButton("emo4_6");
-        JButton isa4_7 = new JButton("isa4_7");
-        JButton emo4_7 = new JButton("emo4_7");
-        JButton isa4_8 = new JButton("isa4_8");
-        JButton emo4_8 = new JButton("<html>" + "emo4_8" + "<br>" + "F, EUR X XX" + "</html>");
-        //alimmainen on tekstin sijoittelu testi
         
         panel.add(isa4_1);
         panel.add(emo4_1);
@@ -258,6 +292,14 @@ public class Kayttoliittyma implements Runnable {
         JTextArea kissa1 = new JTextArea("emo");
         JLabel isa = new JLabel("isä:");
         JTextArea kissa2 = new JTextArea("isa");
+        
+        TestiAstuta astuttaja = new TestiAstuta(kissa2, kissa1, this.kissa, 
+                this.isa1, this.emo1, this.isa2_1, this.emo2_1, this.isa2_2, 
+                this.emo2_2, isa3_1, emo3_1, isa3_2, emo3_2, isa3_3, emo3_3, 
+                isa3_4, emo3_4, isa4_1, emo4_1, isa4_2, emo4_2, isa4_3, emo4_3, 
+                isa4_4, emo4_4, isa4_5, emo4_5, isa4_6, emo4_6, isa4_7, emo4_7,
+                isa4_8, emo4_8, this.kissat);
+        astutus.addActionListener(astuttaja);
         
         panel.add(astutus);
         panel.add(emo);
