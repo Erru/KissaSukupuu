@@ -59,5 +59,5 @@ n. 1,5h toiminnallisuutta käyttöliittymään (LisaaKissa ja LisaaTieto).
 45min toiminnallisuutta.
 
 ######26.2.2015
-
+1h 15min väriennustusominaisuuksia ja debuggausta.
 
