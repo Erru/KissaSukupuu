@@ -42,3 +42,22 @@ n. 2h 35min HaeKissa luokkaa ja PieniMuisti luokkaa, jotta voisi testata toimiik
 
 ######16.2.2015
 n. 1,5h toiminnallisuutta käyttöliittymään (LisaaKissa ja LisaaTieto).
+
+######18.2.2015
+1h 10min toiminnallisuutta (kuuntelijat).
+
+######19.2.2015
+1h 25min toiminnallisuutta (kuuntelijat).
+
+######20.2.2015
+1h 5min toiminnallisuutta (kuuntelijat).
+
+######24.2.2015
+3h 5min toiminnallisuutta ja debuggausta.
+
+######25.2.2015
+45min toiminnallisuutta.
+
+######26.2.2015
+
+
