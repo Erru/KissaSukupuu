@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class SukukatoLaskuriTest {
     SukukatoLaskuri laskuri;
-    ArrayList<Kissa> kissat;
+    ArrayList<String> kissat;
     
     @Before
     public void setUp() {
@@ -28,16 +28,16 @@ public class SukukatoLaskuriTest {
         Kissa kissa8 = new Kissa("murri");
         Kissa kissa9 = new Kissa("matti");
         Kissa kissa10 = new Kissa("mutti");
-        kissat.add(kissa1);
-        kissat.add(kissa2);
-        kissat.add(kissa3);
-        kissat.add(kissa4);
-        kissat.add(kissa5);
-        kissat.add(kissa6);
-        kissat.add(kissa7);
-        kissat.add(kissa8);
-        kissat.add(kissa9);
-        kissat.add(kissa10);
+        kissat.add(kissa1.getNimi());
+        kissat.add(kissa2.getNimi());
+        kissat.add(kissa3.getNimi());
+        kissat.add(kissa4.getNimi());
+        kissat.add(kissa5.getNimi());
+        kissat.add(kissa6.getNimi());
+        kissat.add(kissa7.getNimi());
+        kissat.add(kissa8.getNimi());
+        kissat.add(kissa9.getNimi());
+        kissat.add(kissa10.getNimi());
         
     }
     
@@ -49,9 +49,7 @@ public class SukukatoLaskuriTest {
     
     @Test
     public void laskeSukukatokerroinToimii(){
-        laskuri.uniikitNimet(kissat);
-        laskuri.laskeSukukatokerroin();
-        assertEquals(0.8, laskuri.getSukukatokerroin(), 0.001);
+        assertEquals(0.8, laskuri.getSukukatokerroin(kissat), 0.001);
     }
     
     

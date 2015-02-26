@@ -5,9 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import kissasukupuu.kissasukupuu.Kissa;
 import kissasukupuu.kissasukupuu.Kissat;
+import kissasukupuu.kissasukupuu.SukukatoLaskuri;
+import kissasukupuu.kissasukupuu.VariKantajuus;
 
 /**
  *Luokka ottaa käyttäjän antamat kissan nimet ja testiastuttaa kissat, jos ne 
@@ -54,6 +57,10 @@ public class TestiAstuta implements ActionListener{
     ArrayList<Kissa> lista;
     Kissa iska;
     Kissa aiti;
+    SukukatoLaskuri laskuri;
+    ArrayList<String> nimet;
+    JButton sukukato;
+    JLabel pentujenVarit;
     
     
     public TestiAstuta(JTextArea isukki, JTextArea mamma, JButton pennut, JButton isa1, 
@@ -64,7 +71,7 @@ public class TestiAstuta implements ActionListener{
                     JButton emo4_2, JButton isa4_3, JButton emo4_3, JButton isa4_4, 
                     JButton emo4_4, JButton isa4_5, JButton emo4_5, JButton isa4_6, 
                     JButton emo4_6, JButton isa4_7, JButton emo4_7, JButton isa4_8, 
-                    JButton emo4_8, Kissat kissat){
+                    JButton emo4_8, Kissat kissat, JButton sukukato, JLabel varikentta){
         
         this.isa = isukki;
         this.emo = mamma;
@@ -101,6 +108,10 @@ public class TestiAstuta implements ActionListener{
         this.emo4_8 = emo4_8;
         this.kissat = kissat;
         this.lista = kissat.getKissat();
+        this.laskuri = new SukukatoLaskuri();
+        this.nimet = new ArrayList();
+        this.sukukato = sukukato;
+        this.pentujenVarit = varikentta;
     }
     
     
@@ -119,16 +130,26 @@ public class TestiAstuta implements ActionListener{
         } else if (aiti == null){
             this.pennut.setText("<html> Annettua emoa <br> ei ole olemassa </html>");
         } else {
-            this.asetaKissat();
+            
+            this.taytaSukutaulu();
+            
+            //kutsuu metodia joka ennustaa pentujen värit
+            //kutsuu metodia, joka laskee sukukatokertoimen ja asettaa sen
+            this.keraaKissat();
+            this.sukukato.setText("<html>" + String.valueOf(laskuri.getSukukatokerroin(this.nimet)) + "<br>" + laskuri.kerroPuuttuvista() + "</html>");
+        
+            this.pentujenVarit.setText(this.pennuilleVarit());
+        }
+        
+        
+    }
+    
+    public void taytaSukutaulu(){
+        this.asetaKissat();
             this.asetaIsanVanhemmat();
             this.asetaEmonVanhemmat();
             this.aseta3Polvi();
             this.aseta4Polvi();
-            //kutsuu metodia joka ennustaa pentujen värit
-            //kutsuu metodia, joka laskee sukukatokertoimen ja asettaa sen
-        }
-        
-        
     }
     
     public Kissa kissaListalla(String nimi){
@@ -227,22 +248,32 @@ public class TestiAstuta implements ActionListener{
     }
     
     public void aseta3Polvi(){
-        Kissa i3_1 = this.iska.getIsa().getIsa();
-        Kissa e3_1 = this.iska.getIsa().getEmo();
-        this.asetaOlemassaOlevat(this.isa3_1, this.emo3_1, i3_1, e3_1);
         
-        Kissa i3_2 = this.iska.getEmo().getIsa();
-        Kissa e3_2 = this.iska.getEmo().getEmo(); 
-        this.asetaOlemassaOlevat(this.isa3_2, this.emo3_2, i3_2, e3_2);
+        this.asetaEiNullKissanVanhemmat(this.iska.getIsa(), this.isa3_1, this.emo3_1);
+        this.asetaEiNullKissanVanhemmat(this.iska.getEmo(), this.isa3_2, this.emo3_2);
+        this.asetaEiNullKissanVanhemmat(this.aiti.getIsa(), this.isa3_3, this.emo3_3);
+        this.asetaEiNullKissanVanhemmat(this.aiti.getEmo(), this.isa3_4, this.emo3_4);
         
-        Kissa i3_3 = this.aiti.getIsa().getIsa();
-        Kissa e3_3 = this.aiti.getIsa().getEmo();
-        this.asetaOlemassaOlevat(this.isa3_3, this.emo3_3, i3_3, e3_3);
-        
-        Kissa i3_4 = this.aiti.getEmo().getIsa();
-        Kissa e3_4 = this.aiti.getEmo().getEmo();
-        this.asetaOlemassaOlevat(this.isa3_4, this.emo3_4, i3_4, e3_4);
     }
+    
+    //tarkistaja metodi, joka vahtii ettei null kissat aiheuta ongelmia
+    
+    public boolean onkoNull(Kissa kissa){
+        if(kissa == null){
+            return true;
+        } 
+        return false;
+    }
+    
+    public void asetaEiNullKissanVanhemmat(Kissa kissa, JButton isa, JButton emo){
+        if (this.onkoNull(kissa) == false){
+            Kissa isukki = kissa.getIsa();
+            Kissa mamma = kissa.getEmo();
+            this.asetaOlemassaOlevat(isa, emo, isukki, mamma);
+        }
+    }
+    
+    
     
     public void asetaOlemassaOlevat(JButton poikanappi, JButton tyttonappi, Kissa kolli, 
             Kissa naaras){
@@ -265,17 +296,104 @@ public class TestiAstuta implements ActionListener{
     
     //ei toimi jostain syystä
     public void aseta4Polvi(){
-        Kissa i4_1 = this.iska.getIsa().getIsa().getIsa();
-        Kissa e4_1 = this.iska.getIsa().getIsa().getEmo();
-        this.asetaOlemassaOlevat(this.isa4_1, this.emo4_1, i4_1, e4_1);
+        if(this.onkoNull(this.iska.getIsa()) == false){
+            this.asetaEiNullKissanVanhemmat(this.iska.getIsa().getIsa(), this.isa4_1, this.emo4_1);
+            this.asetaEiNullKissanVanhemmat(this.iska.getIsa().getEmo(), this.isa4_2, this.emo4_2);
+        }
         
-        Kissa i4_2 = this.iska.getIsa().getEmo().getIsa();
-        Kissa e4_2 = this.iska.getIsa().getEmo().getEmo();
-        this.asetaOlemassaOlevat(this.isa4_2, this.emo4_2, i4_2, e4_2);
+        if(this.onkoNull(this.iska.getEmo()) == false){
+            this.asetaEiNullKissanVanhemmat(iska.getEmo().getIsa(), this.isa4_3, this.emo4_3);
+            this.asetaEiNullKissanVanhemmat(iska.getEmo().getEmo(), this.isa4_4, this.emo4_4);
+        }
         
-        Kissa i4_3 = this.iska.getEmo().getIsa().getIsa();
-        Kissa e4_3 = this.iska.getEmo().getIsa().getEmo();
-        this.asetaOlemassaOlevat(this.isa4_3, this.emo4_3, i4_3, e4_3);
+        if(this.onkoNull(this.aiti.getIsa()) == false){
+            this.asetaEiNullKissanVanhemmat(this.aiti.getIsa().getIsa(), this.isa4_5, this.emo4_5);
+            this.asetaEiNullKissanVanhemmat(this.aiti.getIsa().getEmo(), this.isa4_6, this.emo4_6);
+        }
+        
+        if(this.onkoNull(this.aiti.getIsa()) == false){
+            this.asetaEiNullKissanVanhemmat(aiti.getEmo().getIsa(), this.isa4_7, this.emo4_7);
+            this.asetaEiNullKissanVanhemmat(aiti.getEmo().getEmo(), this.isa4_8, this.emo4_8);
+        }
+        
     }
+    
+    private void keraaKissat() {
+        
+        this.nimet.add(this.isa1.getText());
+        this.nimet.add(this.emo1.getText());
+        this.nimet.add(this.isa2_1.getText());
+        this.nimet.add(this.emo2_1.getText());
+        this.nimet.add(this.isa2_2.getText());
+        this.nimet.add(this.emo2_2.getText());
+        this.nimet.add(this.isa3_1.getText());
+        this.nimet.add(this.emo3_1.getText());
+        this.nimet.add(this.isa3_2.getText());
+        this.nimet.add(this.emo3_2.getText());
+        this.nimet.add(this.isa3_3.getText());
+        this.nimet.add(this.emo3_3.getText());
+        this.nimet.add(this.isa3_4.getText());
+        this.nimet.add(this.emo3_4.getText());
+        this.nimet.add(this.isa4_1.getText());
+        this.nimet.add(this.emo4_1.getText());
+        this.nimet.add(this.isa4_2.getText());
+        this.nimet.add(this.emo4_2.getText());
+        this.nimet.add(this.isa4_3.getText());
+        this.nimet.add(this.emo4_3.getText());
+        this.nimet.add(this.isa4_4.getText());
+        this.nimet.add(this.emo4_4.getText());
+        this.nimet.add(this.isa4_5.getText());
+        this.nimet.add(this.emo4_5.getText());
+        this.nimet.add(this.isa4_6.getText());
+        this.nimet.add(this.emo4_6.getText());
+        this.nimet.add(this.isa4_7.getText());
+        this.nimet.add(this.emo4_7.getText());
+        this.nimet.add(this.isa4_8.getText());
+        this.nimet.add(this.emo4_8.getText());
+        
+        
+    }
+    
+    public String pennuilleVarit(){
+         VariKantajuus iskan = new VariKantajuus(this.iska);
+         VariKantajuus aidin = new VariKantajuus(this.aiti);
+         String varit = "<html>Pennut voivat <br> olla ainakin: <br>";
+         
+         varit += this.kuviottomat(iskan, aidin);
+         varit += this.kuviolliset(iskan, aidin);
+         
+         varit += "</html>";
+         
+         return varit;
+     }
+    
+    private String kuviottomat(VariKantajuus isan, VariKantajuus emon){
+        String teksti = "";
+        if(isan.kantaaKuviottomuutta() == true && emon.kantaaKuviottomuutta() == true){
+            if(isan.kantaaTaysvaria() == true || emon.kantaaTaysvaria() == true){
+                teksti += "musta <br>";
+            }
+            if(isan.kantaaDiluutiota() == true && emon.kantaaDiluutiota() == true){
+                teksti += "sininen <br>";
+            }
+        } 
+        
+        return teksti;
+    }
+    
+    private String kuviolliset(VariKantajuus isan, VariKantajuus emon){
+        String teksti = "";
+        
+        if(isan.kantaaKuviollisuutta() == true || emon.kantaaKuviollisuutta() == true){
+            if(isan.kantaaTaysvaria() == true || emon.kantaaTaysvaria()){
+                teksti += "ruskeakuvioinen <br>";
+            }
+            if(isan.kantaaDiluutiota() == true && emon.kantaaDiluutiota() == true){
+                teksti += "sinikuvioinen <br>";
+            }
+        }
+        
+        return teksti;
+    } 
     
 }

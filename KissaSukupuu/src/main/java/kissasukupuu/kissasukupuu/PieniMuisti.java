@@ -32,6 +32,7 @@ public class PieniMuisti {
         this.DidinVanhemmat();
         this.sinfonianVanhemmat();
         this.betenVanhemmat();
+        this.utopianVanhemmat();
     }
     
     public void NuttuJaVanhemmat(){
@@ -131,11 +132,11 @@ public class PieniMuisti {
         utopia.lisaaIsa(rambler);
         
         //rotu
-        utopia.lisaaRotu("EUR");
-        siniminttu.lisaaRotu("EUR");
+        marilyn.lisaaRotu("EUR");
+        rambler.lisaaRotu("EUR");
         //väri
-        utopia.lisaaVari("a 24");
-        siniminttu.lisaaVari("a 24");
+        marilyn.lisaaVari("a 24");
+        rambler.lisaaVari("a 24");
         //sukupuoli
         rambler.lisaaSukupuoli("M");
         marilyn.lisaaSukupuoli("F");

@@ -9,8 +9,9 @@ import java.util.ArrayList;
  */
 
 public class SukukatoLaskuri {
-    ArrayList<Kissa> kissat;
-    ArrayList<String> nimet;
+    ArrayList<String> kissat;
+    ArrayList<String> uniikitNimet;
+    int puuttuvat;
     double sukukatokerroin;
     
     public SukukatoLaskuri(){
@@ -22,30 +23,38 @@ public class SukukatoLaskuri {
      * 
      * @param lista sukutaulussa esiintyvistä kissoista
      */
-    public void uniikitNimet(ArrayList<Kissa> lista){
+    public void uniikitNimet(ArrayList<String> lista){
         this.kissat = lista;
-         this.nimet= new ArrayList<>();
+         this.uniikitNimet= new ArrayList<>();
         
-        for(Kissa kissa : this.kissat){
-            String nimi = kissa.getNimi();
-            if(!nimet.contains(nimi)){
-                nimet.add(nimi);
+        for(String nimi : this.kissat){
+            if(!uniikitNimet.contains(nimi) && !nimi.equals("X")){
+                uniikitNimet.add(nimi);
+            } else if (nimi.equals("X")){
+                puuttuvat += 1;
             }
         }
     }
     
     public void laskeSukukatokerroin(){
-        double uniikit = this.nimet.size();
-        double kaikki = this.kissat.size();
+        double uniikit = this.uniikitNimet.size();
+        double kaikki = this.kissat.size() - puuttuvat;
         this.sukukatokerroin = uniikit / kaikki;
     }
     
-    public double getSukukatokerroin(){
+    public double getSukukatokerroin(ArrayList<String> lista){
+        this.uniikitNimet(lista);
+        this.laskeSukukatokerroin();
         return this.sukukatokerroin;
     }
     
     public ArrayList<String> getUniikitNimet(){
-        return this.nimet;
+        return this.uniikitNimet;
+    }
+    
+    public String kerroPuuttuvista(){
+        return " <html> tiedossa olevien <br> kissojen mukaan, <br> " + this.puuttuvat 
+                + " kissaa puuttuu <br> sukutaulun 30 kissasta </html>";
     }
     
     

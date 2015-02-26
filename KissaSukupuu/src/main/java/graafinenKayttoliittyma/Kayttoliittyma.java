@@ -26,7 +26,7 @@ public class Kayttoliittyma implements Runnable {
     
     //vasenreuna
     JLabel vasenreuna;
-    
+    JButton sukukato;
     //keskus
     //col1
     JButton kissa;
@@ -70,6 +70,7 @@ public class Kayttoliittyma implements Runnable {
         this.kissat = kissat;
         //vasenreuna
         this.vasenreuna = new JLabel("<html> väriennustukset: <br> musta </html>");
+        this.sukukato = new JButton("sukukatokerroin");
         //keskus
         kissa = new JButton("<html>" + "Errun Hehkeä herttuatar" + "<br>" + "F, EUR e 24" + "</html>");
         isa1 = new JButton("isa1");
@@ -142,9 +143,10 @@ public class Kayttoliittyma implements Runnable {
     }
     
     private JPanel luoVasenSivu(){
-        JPanel panel = new JPanel(new GridLayout(1,1));
+        JPanel panel = new JPanel(new GridLayout(2,1));
         
         panel.add(vasenreuna);
+        panel.add(sukukato);
         
         return panel;
     }
@@ -182,7 +184,8 @@ public class Kayttoliittyma implements Runnable {
                 this.emo1, this.isa2_1, this.emo2_1, this.isa2_2, this.emo2_2, 
                 isa3_1, emo3_1, isa3_2, emo3_2, isa3_3, emo3_3, isa3_4, emo3_4, 
                 isa4_1, emo4_1, isa4_2, emo4_2, isa4_3, emo4_3, isa4_4, emo4_4,
-                isa4_5, emo4_5, isa4_6, emo4_6, isa4_7, emo4_7, isa4_8, emo4_8);
+                isa4_5, emo4_5, isa4_6, emo4_6, isa4_7, emo4_7, isa4_8, emo4_8,
+                sukukato, vasenreuna);
         hae.addActionListener(hakija);
         
         panel.add(hae);
@@ -288,9 +291,9 @@ public class Kayttoliittyma implements Runnable {
         JPanel panel = new JPanel(new GridLayout(1,5));
         
         JButton astutus = new JButton("Testiastuta kissat:");
-        JLabel emo = new JLabel("emo:");
+        JLabel emo = new JLabel("emon nimi:");
         JTextArea kissa1 = new JTextArea("emo");
-        JLabel isa = new JLabel("isä:");
+        JLabel isa = new JLabel("isän nimi:");
         JTextArea kissa2 = new JTextArea("isa");
         
         TestiAstuta astuttaja = new TestiAstuta(kissa2, kissa1, this.kissa, 
@@ -298,7 +301,7 @@ public class Kayttoliittyma implements Runnable {
                 this.emo2_2, isa3_1, emo3_1, isa3_2, emo3_2, isa3_3, emo3_3, 
                 isa3_4, emo3_4, isa4_1, emo4_1, isa4_2, emo4_2, isa4_3, emo4_3, 
                 isa4_4, emo4_4, isa4_5, emo4_5, isa4_6, emo4_6, isa4_7, emo4_7,
-                isa4_8, emo4_8, this.kissat);
+                isa4_8, emo4_8, this.kissat, sukukato, vasenreuna);
         astutus.addActionListener(astuttaja);
         
         panel.add(astutus);

@@ -146,30 +146,103 @@ public class VariKantajuus {
     }
     
     public boolean kantaaTaysvaria(){
-        this.kantaakoTaysvaria();
+        if(this.kantaja.getIsa() == null || this.kantaja.getEmo() == null){
+            this.kantaakoTaysvariaIlmanVanhempia();
+        } else {
+            this.kantaakoTaysvaria();
+        }
         return this.taysvari;
     }
     
     public boolean kantaaDiluutiota(){
-        this.kantaakoDiluutiota();
+        if(this.kantaja.getIsa() == null || this.kantaja.getEmo() == null){
+            this.kantaakoDiluutiotaIlmanVanhempia();
+        } else {
+            this.kantaakoDiluutiota();
+        }
         return this.diluutio;
     }
     
     public boolean kantaaKuviottomuutta(){
-        this.kantaakoKuviottomuutta();
+        if(this.kantaja.getIsa() == null || this.kantaja.getEmo() == null){
+            this.kantaakoKuviottomuuttaIlmanVanhempia();
+        } else {
+            this.kantaakoKuviottomuutta();
+        }
         return this.kuviottomuus;
     }
     
     public boolean kantaaKuviollisuutta(){
-        this.kantaakoKuviollisuutta();
+        if(this.kantaja.getIsa() == null || this.kantaja.getEmo() == null){
+            this.kantaakoKuviollisuuttaIlmanVanhempia();
+        } else {
+            this.kantaakoKuviollisuutta();
+        }
         return this.kuviollisuus;
     }
     
     public boolean kantaaTabbya(){
-        this.kantaakoKlassistaTabbyKuviota();;
+        if(this.kantaja.getIsa() == null || this.kantaja.getEmo() == null){
+            this.kantaakoTabbyaIlmanVanhempia();
+        } else {
+           this.kantaakoKlassistaTabbyKuviota(); 
+        }
         return this.tabbykuvio;
     }
     
+    public void kantaakoTabbyaIlmanVanhempia(){
+        this.kVari = kantaja.getVari();
+        kKuvio = kVari.getKuvio();
+        
+        if(kKuvio.contains("22")){
+            this.tabbykuvio = true;
+        } else {
+            this.tabbykuvio = false;
+        }
+    }
     
+    public void kantaakoDiluutiotaIlmanVanhempia(){
+        this.kVari = kantaja.getVari();
+        kPohjavari = kVari.getPohjavari();
+        
+        if(kPohjavari.contains("a") || kPohjavari.contains("e") || kPohjavari.contains("g")){
+            this.diluutio = true;
+        } else {
+            this.diluutio = false;
+        }
+    }
+    
+    public void kantaakoTaysvariaIlmanVanhempia(){
+        this.kVari = kantaja.getVari();
+        kPohjavari = kVari.getPohjavari();
+        
+        if(kPohjavari.contains("n") || kPohjavari.contains("d") || kPohjavari.contains("f")){
+            this.taysvari = true;
+        } else {
+            this.taysvari = false;
+        }
+    }
+    
+    public void kantaakoKuviottomuuttaIlmanVanhempia(){
+        this.kVari = kantaja.getVari();
+        kKuvio = kVari.getKuvio();
+        
+        if(kKuvio.equals("kuvioton")){
+            this.kuviottomuus = true;
+        } else {
+            this.kuviottomuus = false;
+        }
+    }
+    
+    public void kantaakoKuviollisuuttaIlmanVanhempia(){
+        this.kVari = kantaja.getVari();
+        kKuvio = kVari.getKuvio();
+        
+        if(!kKuvio.equals("kuvioton")){
+            this.kuviollisuus = true;
+        } else {
+            this.kuviollisuus = false;
+        }
+    }
     
 }

@@ -5,13 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import kissasukupuu.kissasukupuu.Kissa;
 import kissasukupuu.kissasukupuu.Kissat;
+import kissasukupuu.kissasukupuu.SukukatoLaskuri;
+import kissasukupuu.kissasukupuu.VariKantajuus;
 
 /**
  *Luokka ottaa hakukenttään laitetun kissan nimen ja etsii ja luo sen kissan
- *  sukutaulun.
+ *  sukutaulun. 
  */
 public class HaeKissa implements ActionListener{
     
@@ -49,6 +52,13 @@ public class HaeKissa implements ActionListener{
     JButton emo4_7;
     JButton isa4_8;
     JButton emo4_8;
+    JButton sukukato;
+    ArrayList<Kissa> lista;
+    Kissa iska;
+    Kissa aiti;
+    SukukatoLaskuri laskuri;
+    ArrayList<String> nimet;
+    JLabel varit;
     
     public HaeKissa(Kissat kisut, JTextArea lahde, JButton kohde, JButton isa, 
                     JButton emo, JButton isa2_1, JButton emo2_1, JButton isa2_2,
@@ -58,7 +68,7 @@ public class HaeKissa implements ActionListener{
                     JButton emo4_2, JButton isa4_3, JButton emo4_3, JButton isa4_4, 
                     JButton emo4_4, JButton isa4_5, JButton emo4_5, JButton isa4_6, 
                     JButton emo4_6, JButton isa4_7, JButton emo4_7, JButton isa4_8, 
-                    JButton emo4_8){
+                    JButton emo4_8, JButton sukukato, JLabel varikentta){
         this.hakukentta = lahde;
         this.haettu = kohde;
         this.kisut = kisut;
@@ -92,6 +102,11 @@ public class HaeKissa implements ActionListener{
         this.emo4_7 = emo4_7;
         this.isa4_8 = isa4_8;
         this.emo4_8 = emo4_8;
+        this.lista = kisut.getKissat();
+        this.laskuri = new SukukatoLaskuri();
+        this.nimet = new ArrayList();
+        this.sukukato = sukukato;
+        this.varit = varikentta;
     }
     
     /**
@@ -121,8 +136,17 @@ public class HaeKissa implements ActionListener{
         //col1
         this.asetaKissa();
         //col2
-        this.asetaIsa();
-        this.asetaEmo();
+        if(this.onkoNull(this.kissa) == false){
+            if(kissa.getIsa() == null){
+            } else {
+              this.asetaIsa(); 
+            }
+            if(kissa.getEmo() == null){
+            } else {
+              this.asetaEmo();
+            }
+        }
+        
         //col3
         this.asetaCol3();
         //col4
@@ -131,6 +155,12 @@ public class HaeKissa implements ActionListener{
         this.asetaCol5();
         
         this.hakukentta.setText("nimi");
+        
+        this.keraaKissat();
+        this.sukukato.setText("<html>" + String.valueOf(laskuri.getSukukatokerroin(this.nimet)) + "<br>" + laskuri.kerroPuuttuvista() + "</html>");
+        
+        this.varit.setText(this.kannettavatVarit());
+        
     }
 
     /**
@@ -217,171 +247,156 @@ public class HaeKissa implements ActionListener{
      */
     
     public void asetaCol3(){
-        this.asetaIsanVanhemmat();
-        this.asetaEmonVanhemmat();
-    }
-    
-    
-    public void asetaIsanVanhemmat(){
-        Kissa isa = this.kissa.getIsa().getIsa();
-        this.isa2_1.setText("<html>" + isa.getNimi() + "<br>" + isa.getSukupuoli() 
-                + ", " + isa.getRotu() + " " + isa.getVari().getVari() + "</html>");
-        
-        
-        Kissa emo = this.kissa.getIsa().getEmo();
-        this.emo2_1.setText("<html>" + emo.getNimi() + "<br>" + emo.getSukupuoli() 
-                + ", " + emo.getRotu() + " " + emo.getVari().getVari() + "</html>");
-        
-    }
-    
-    public void asetaEmonVanhemmat(){
-        Kissa isa = this.kissa.getEmo().getIsa();
-        this.isa2_2.setText("<html>" + isa.getNimi() + "<br>" + isa.getSukupuoli() 
-                + ", " + isa.getRotu() + " " + isa.getVari().getVari() + "</html>");
-        
-        
-        Kissa emo = this.kissa.getEmo().getEmo();
-        this.emo2_2.setText("<html>" + emo.getNimi() + "<br>" + emo.getSukupuoli() 
-                + ", " + emo.getRotu() + " " + emo.getVari().getVari() + "</html>");
+        this.asetaEiNullKissanVanhemmat(this.kissa.getIsa(), this.isa2_1, this.emo2_1);
+        this.asetaEiNullKissanVanhemmat(this.kissa.getEmo(), this.isa2_2, this.emo2_2);
     }
     
     public void asetaCol4(){
-        this.aseta3_1();
-        this.aseta3_2();
-        this.aseta3_3();
-        this.aseta3_4();
-    }
-    
-    public void aseta3_1(){
-        Kissa isa3_1 = this.kissa.getIsa().getIsa().getIsa();
-        this.isa3_1.setText("<html>" + isa3_1.getNimi() + "<br>" + isa3_1.getSukupuoli() 
-                + ", " + isa3_1.getRotu() + " " + isa3_1.getVari().getVari() + "</html>");
         
-        Kissa emo3_1 = this.kissa.getIsa().getIsa().getEmo();
-        this.emo3_1.setText("<html>" + emo3_1.getNimi() + "<br>" + emo3_1.getSukupuoli() 
-                + ", " + emo3_1.getRotu() + " " + emo3_1.getVari().getVari() + "</html>");
-    }
-    
-    public void aseta3_2(){
-        Kissa isa3_2 = this.kissa.getIsa().getEmo().getIsa();
-        this.isa3_2.setText("<html>" + isa3_2.getNimi() + "<br>" + isa3_2.getSukupuoli() 
-                + ", " + isa3_2.getRotu() + " " + isa3_2.getVari().getVari() + "</html>");
+        if(this.onkoNull(this.kissa.getIsa()) == false){
+            this.asetaEiNullKissanVanhemmat(this.kissa.getIsa().getIsa(), this.isa3_1, this.emo3_1);
+            this.asetaEiNullKissanVanhemmat(this.kissa.getIsa().getEmo(), this.isa3_2, this.emo3_2);
+        }
         
-        Kissa emo3_2 = this.kissa.getIsa().getEmo().getEmo();
-        this.emo3_2.setText("<html>" + emo3_2.getNimi() + "<br>" + emo3_2.getSukupuoli() 
-                + ", " + emo3_2.getRotu() + " " + emo3_2.getVari().getVari() + "</html>");
-    }
-    
-    public void aseta3_3(){
-        Kissa isa3_3 = this.kissa.getEmo().getIsa().getIsa();
-        this.isa3_3.setText("<html>" + isa3_3.getNimi() + "<br>" + isa3_3.getSukupuoli() 
-                + ", " + isa3_3.getRotu() + " " + isa3_3.getVari().getVari() + "</html>");
+        if(this.onkoNull(this.kissa.getEmo()) == false){
+            this.asetaEiNullKissanVanhemmat(this.kissa.getEmo().getIsa(), this.isa3_3, this.emo3_3);
+            this.asetaEiNullKissanVanhemmat(this.kissa.getEmo().getEmo(), this.isa3_4, this.emo3_4);
+        }
         
-        Kissa emo3_3 = this.kissa.getEmo().getIsa().getEmo();
-        this.emo3_3.setText("<html>" + emo3_3.getNimi() + "<br>" + emo3_3.getSukupuoli() 
-                + ", " + emo3_3.getRotu() + " " + emo3_3.getVari().getVari() + "</html>");
-    }
-    
-    public void aseta3_4(){
-        Kissa isa3_4 = this.kissa.getEmo().getEmo().getIsa();
-        this.isa3_4.setText("<html>" + isa3_4.getNimi() + "<br>" + isa3_4.getSukupuoli() 
-                + ", " + isa3_4.getRotu() + " " + isa3_4.getVari().getVari() + "</html>");
         
-        Kissa emo3_4 = this.kissa.getEmo().getEmo().getEmo();
-        this.emo3_4.setText("<html>" + emo3_4.getNimi() + "<br>" + emo3_4.getSukupuoli() 
-                + ", " + emo3_4.getRotu() + " " + emo3_4.getVari().getVari() + "</html>");
     }
     
     public void asetaCol5(){
-        this.aseta4_1();
-        this.aseta4_2();
-        this.aseta4_3();
-        this.aseta4_4();
-        this.aseta4_5();
-        this.aseta4_6();
-        this.aseta4_7();
-        this.aseta4_8();
+        
+        if(this.onkoNull(this.kissa.getIsa()) == false){
+            if(this.onkoNull(this.kissa.getIsa().getIsa()) == false){
+            this.asetaEiNullKissanVanhemmat(this.kissa.getIsa().getIsa().getIsa(), this.isa4_1, this.emo4_1);
+            this.asetaEiNullKissanVanhemmat(this.kissa.getIsa().getIsa().getEmo(), this.isa4_2, this.emo4_2);
+            }
+            if(this.onkoNull(this.kissa.getIsa().getEmo()) == false){
+                this.asetaEiNullKissanVanhemmat(this.kissa.getIsa().getEmo().getIsa(), this.isa4_3, this.emo4_3);
+                this.asetaEiNullKissanVanhemmat(this.kissa.getIsa().getEmo().getEmo(), this.isa4_4, this.emo4_4);
+            }
+        }
+        
+        if(this.onkoNull(this.kissa.getEmo()) == false){
+            if(this.onkoNull(this.kissa.getEmo().getIsa()) == false){
+            this.asetaEiNullKissanVanhemmat(this.kissa.getEmo().getIsa().getIsa(), this.isa4_5, this.emo4_5);
+            this.asetaEiNullKissanVanhemmat(this.kissa.getEmo().getIsa().getEmo(), this.isa4_6, this.emo4_6);
+            }
+            if(this.onkoNull(this.kissa.getEmo().getEmo()) == false){
+                this.asetaEiNullKissanVanhemmat(this.kissa.getEmo().getEmo().getIsa(), this.isa4_7, this.emo4_7);
+                this.asetaEiNullKissanVanhemmat(this.kissa.getEmo().getEmo().getEmo(), this.isa4_8, this.emo4_8);
+            }
+        }
+        
     }
     
-    public void aseta4_1(){
-        Kissa isa4_1 = this.kissa.getIsa().getIsa().getIsa().getIsa();
-        this.isa4_1.setText("<html>" + isa4_1.getNimi() + "<br>" + isa4_1.getSukupuoli() 
-                + ", " + isa4_1.getRotu() + " " + isa4_1.getVari().getVari() + "</html>");
-        
-        Kissa emo4_1 = this.kissa.getIsa().getIsa().getIsa().getEmo();
-        this.emo4_1.setText("<html>" + emo4_1.getNimi() + "<br>" + emo4_1.getSukupuoli() 
-                + ", " + emo4_1.getRotu() + " " + emo4_1.getVari().getVari() + "</html>");
+     public boolean onkoNull(Kissa kissa){
+        if(kissa == null){
+            return true;
+        } 
+        return false;
     }
     
-    public void aseta4_2(){
-        Kissa isa4_2 = this.kissa.getIsa().getIsa().getEmo().getIsa();
-        this.isa4_2.setText("<html>" + isa4_2.getNimi() + "<br>" + isa4_2.getSukupuoli() 
-                + ", " + isa4_2.getRotu() + " " + isa4_2.getVari().getVari() + "</html>");
+     public void asetaEiNullKissanVanhemmat(Kissa kissa, JButton isa, JButton emo){
+        if (this.onkoNull(kissa) == false){
+            Kissa isukki = kissa.getIsa();
+            Kissa mamma = kissa.getEmo();
+            this.asetaOlemassaOlevat(isa, emo, isukki, mamma);
+        }
+        }
+     
+     public void asetaOlemassaOlevat(JButton poikanappi, JButton tyttonappi, Kissa kolli, 
+            Kissa naaras){
         
-        Kissa emo4_2 = this.kissa.getIsa().getIsa().getEmo().getEmo();
-        this.emo4_2.setText("<html>" + emo4_2.getNimi() + "<br>" + emo4_2.getSukupuoli() 
-                + ", " + emo4_2.getRotu() + " " + emo4_2.getVari().getVari() + "</html>");
-    }
-    
-    public void aseta4_3(){
-        Kissa isa4_3 = this.kissa.getIsa().getEmo().getIsa().getIsa();
-        this.isa4_3.setText("<html>" + isa4_3.getNimi() + "<br>" + isa4_3.getSukupuoli() 
-                + ", " + isa4_3.getRotu() + " " + isa4_3.getVari().getVari() + "</html>");
+        Kissa kisu1 = kolli;
+        Kissa kisu2 = naaras;
         
-        Kissa emo4_3 = this.kissa.getIsa().getEmo().getIsa().getEmo();
-        this.emo4_3.setText("<html>" + emo4_3.getNimi() + "<br>" + emo4_3.getSukupuoli() 
-                + ", " + emo4_3.getRotu() + " " + emo4_3.getVari().getVari() + "</html>");
+        if(kisu1 == null && kisu2 == null){
+            //ei tehdä mitään
+        } else if (kisu1 == null){
+            this.asetaKissa(tyttonappi, kisu2);
+        } else if (kisu2 == null){
+            //aseta isanisa
+            this.asetaKissa(poikanappi, kisu1);
+        } else {
+            this.asetaVanhemmat(poikanappi, tyttonappi, kisu1, kisu2);
+        }
     }
-    
-    public void aseta4_4(){
-        Kissa isa4_4 = this.kissa.getIsa().getEmo().getEmo().getIsa();
-        this.isa4_4.setText("<html>" + isa4_4.getNimi() + "<br>" + isa4_4.getSukupuoli() 
-                + ", " + isa4_4.getRotu() + " " + isa4_4.getVari().getVari() + "</html>");
+     
+     public void asetaKissa(JButton annettu, Kissa mirri){
+        annettu.setText("<html>" + mirri.getNimi() + "<br>" + mirri.getSukupuoli() 
+                + ", " + mirri.getRotu() + " " + mirri.getVari().getVari() + "</html>");
+    }
+     
+     public void asetaVanhemmat(JButton far, JButton mor,Kissa isukki, Kissa mamma){
+        far.setText("<html>" + isukki.getNimi() + "<br>" + isukki.getSukupuoli() 
+                + ", " + isukki.getRotu() + " " + isukki.getVari().getVari() + "</html>");
+        mor.setText("<html>" + mamma.getNimi() + "<br>" + mamma.getSukupuoli() 
+                + ", " + mamma.getRotu() + " " + mamma.getVari().getVari() + "</html>");
+    }
+     
+     private void keraaKissat() {
         
-        Kissa emo4_4 = this.kissa.getIsa().getEmo().getEmo().getEmo();
-        this.emo4_4.setText("<html>" + emo4_4.getNimi() + "<br>" + emo4_4.getSukupuoli() 
-                + ", " + emo4_4.getRotu() + " " + emo4_4.getVari().getVari() + "</html>");
-    }
-    
-    public void aseta4_5(){
-        Kissa isa4_5 = this.kissa.getEmo().getIsa().getIsa().getIsa();
-        this.isa4_5.setText("<html>" + isa4_5.getNimi() + "<br>" + isa4_5.getSukupuoli() 
-                + ", " + isa4_5.getRotu() + " " + isa4_5.getVari().getVari() + "</html>");
+        this.nimet.add(this.isa.getText());
+        this.nimet.add(this.emo.getText());
+        this.nimet.add(this.isa2_1.getText());
+        this.nimet.add(this.emo2_1.getText());
+        this.nimet.add(this.isa2_2.getText());
+        this.nimet.add(this.emo2_2.getText());
+        this.nimet.add(this.isa3_1.getText());
+        this.nimet.add(this.emo3_1.getText());
+        this.nimet.add(this.isa3_2.getText());
+        this.nimet.add(this.emo3_2.getText());
+        this.nimet.add(this.isa3_3.getText());
+        this.nimet.add(this.emo3_3.getText());
+        this.nimet.add(this.isa3_4.getText());
+        this.nimet.add(this.emo3_4.getText());
+        this.nimet.add(this.isa4_1.getText());
+        this.nimet.add(this.emo4_1.getText());
+        this.nimet.add(this.isa4_2.getText());
+        this.nimet.add(this.emo4_2.getText());
+        this.nimet.add(this.isa4_3.getText());
+        this.nimet.add(this.emo4_3.getText());
+        this.nimet.add(this.isa4_4.getText());
+        this.nimet.add(this.emo4_4.getText());
+        this.nimet.add(this.isa4_5.getText());
+        this.nimet.add(this.emo4_5.getText());
+        this.nimet.add(this.isa4_6.getText());
+        this.nimet.add(this.emo4_6.getText());
+        this.nimet.add(this.isa4_7.getText());
+        this.nimet.add(this.emo4_7.getText());
+        this.nimet.add(this.isa4_8.getText());
+        this.nimet.add(this.emo4_8.getText());
         
-        Kissa emo4_5 = this.kissa.getEmo().getIsa().getIsa().getEmo();
-        this.emo4_5.setText("<html>" + emo4_5.getNimi() + "<br>" + emo4_5.getSukupuoli() 
-                + ", " + emo4_5.getRotu() + " " + emo4_5.getVari().getVari() + "</html>");
-    }
-    
-    public void aseta4_6(){
-        Kissa isa4_6 = this.kissa.getEmo().getIsa().getEmo().getIsa();
-        this.isa4_6.setText("<html>" + isa4_6.getNimi() + "<br>" + isa4_6.getSukupuoli() 
-                + ", " + isa4_6.getRotu() + " " + isa4_6.getVari().getVari() + "</html>");
         
-        Kissa emo4_6 = this.kissa.getEmo().getIsa().getEmo().getEmo();
-        this.emo4_6.setText("<html>" + emo4_6.getNimi() + "<br>" + emo4_6.getSukupuoli() 
-                + ", " + emo4_6.getRotu() + " " + emo4_6.getVari().getVari() + "</html>");
     }
-    
-    public void aseta4_7(){
-        Kissa isa4_7 = this.kissa.getEmo().getEmo().getIsa().getIsa();
-        this.isa4_7.setText("<html>" + isa4_7.getNimi() + "<br>" + isa4_7.getSukupuoli() 
-                + ", " + isa4_7.getRotu() + " " + isa4_7.getVari().getVari() + "</html>");
-        
-        Kissa emo4_7 = this.kissa.getEmo().getEmo().getIsa().getEmo();
-        this.emo4_7.setText("<html>" + emo4_7.getNimi() + "<br>" + emo4_7.getSukupuoli() 
-                + ", " + emo4_7.getRotu() + " " + emo4_7.getVari().getVari() + "</html>");
-    }
-    
-    public void aseta4_8(){
-        Kissa isa4_8 = this.kissa.getEmo().getEmo().getEmo().getIsa();
-        this.isa4_8.setText("<html>" + isa4_8.getNimi() + "<br>" + isa4_8.getSukupuoli() 
-                + ", " + isa4_8.getRotu() + " " + isa4_8.getVari().getVari() + "</html>");
-        
-        Kissa emo4_8 = this.kissa.getEmo().getEmo().getEmo().getEmo();
-        this.emo4_8.setText("<html>" + emo4_8.getNimi() + "<br>" + emo4_8.getSukupuoli() 
-                + ", " + emo4_8.getRotu() + " " + emo4_8.getVari().getVari() + "</html>");
-    }
+     
+     public String kannettavatVarit(){
+         VariKantajuus kantaja = new VariKantajuus(this.kissa);
+         String varit = "<html>Kissa kantaa varmasti: <br>";
+         if(kantaja.kantaaTaysvaria() == true){
+             varit = varit + "täysväriä <br>";
+         }
+         if(kantaja.kantaaDiluutiota() == true){
+             varit += "diluutiota <br>";
+         }
+         if(kantaja.kantaaKuviollisuutta() == true){
+             varit += "kuviollisuutta <br>";
+         }
+         if(kantaja.kantaaKuviottomuutta() == true){
+             varit += "kuviottomuutta <br>";
+         }
+         if(kantaja.kantaaTabbya() == true){
+             varit += "klassista tabby kuviota <br>";
+         }
+         varit += "</html>";
+         
+         return varit;
+     }
+     
+     
     
 }
     
