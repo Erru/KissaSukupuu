@@ -14,3 +14,5 @@ Esim. Sininen sisältää n kirjaimen, jolloin se voidaan tulkitaan mustaksi. Oh
 koska en rehellisesti ehtinyt lisämään kaikkia (pelkästään omassa rodussani on sallittu n. 70 erilaista pohjaväri + kuvio/kuviottomuus 
 yhdistelmää). Mm. PieniMuisti luokassa luotu Nuttu kissa ei voi saada mustia tai sinisiä jälkeläisiä, mutta ohjelma ei tiedä sitä, 
 koska punaisen värin kummallisuuksia (X-kromosomaalisesti periytyvä) ei ole sille kerrottu.
+
+Lisäksi sukukatokerroin käyttäytyy kummallisesti ohjelman aikana luotujen kissojen kanssa ainakin, jos niillä ei ole vanhempia.
