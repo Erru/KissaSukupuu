@@ -27,6 +27,10 @@ public class PieniMuisti {
         this.NutunSukupuu();
     }
     
+    /**
+     * Asettelee luotujen apumetodien avulla pienen määrän kissoja ohjelmalle.
+     */
+    
     public void NutunSukupuu(){
         this.NuttuJaVanhemmat();
         this.DidinVanhemmat();
@@ -34,6 +38,10 @@ public class PieniMuisti {
         this.betenVanhemmat();
         this.utopianVanhemmat();
     }
+    
+    /**
+     * Lisää kissat Nuttu ja Minttu ja Didille tietoja.
+     */
     
     public void NuttuJaVanhemmat(){
         Kissa Nuttu = new Kissa("Errun Hehkeä herttuatar");
@@ -61,6 +69,10 @@ public class PieniMuisti {
         
     }
     
+    /**
+     * Luo Didin vanhemmat ja lisää Didin.
+     */
+    
     public void DidinVanhemmat(){
         sinfonia = new Kissa("Mäkikatin Sinfonia");
         bette = new Kissa("Pinkkitassun Bette");
@@ -80,6 +92,10 @@ public class PieniMuisti {
         
         lista.add(Didi);
     }
+    
+    /**
+     * Lisää sinfonian ja luo sille vanhemmat.
+     */
     
     public void sinfonianVanhemmat(){
         utopia = new Kissa("Mäkikatin Utopia");
@@ -102,6 +118,10 @@ public class PieniMuisti {
         lista.add(siniminttu);
     }
     
+    /**
+     * Lisää Beten ja luo sille vanhemmat.
+     */
+    
     public void betenVanhemmat(){
         macho = new Kissa("Silkkiturkin Menevä Macho");
         pupu = new Kissa("Feronian Magnolia Purpurea");
@@ -123,6 +143,10 @@ public class PieniMuisti {
         lista.add(macho);
         lista.add(pupu);
     }
+    
+    /**
+     * Lisää Utopian ja luo sille vanhemmat, jotka myös lisätään.
+     */
     
     public void utopianVanhemmat(){
         rambler = new Kissa("Delicatin Rambler");

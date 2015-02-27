@@ -61,6 +61,11 @@ public class LisaaKissa implements ActionListener{
         
     }
     
+    /**
+     * Tarkistaa, ettei annetun nimistä kissaa ole jo olemassa.
+     * @return 
+     */
+    
     public boolean kissaOnJoOlemassa(){
         for(Kissa kisu : this.lista){
             if (kisu.getNimi().equals(this.nimi.getText())){
@@ -69,6 +74,10 @@ public class LisaaKissa implements ActionListener{
     }
         return false;
     }
+    
+    /**
+     * Lisää kissan ohjelman kissalistaan, jos kissaa ei ole ennestään.
+     */
     
     public void lisaaKissa(){
         if(this.kissaOnJoOlemassa() == false){

@@ -125,16 +125,20 @@ public class TestiAstuta implements ActionListener{
         
         if(iska == null && aiti == null){
             this.pennut.setText("<html> Annettuja vanhempia <br> ei ole olemassa </html>");
+            this.sukukato.setText("sukukato");
+            this.pentujenVarit.setText("väriennustukset:");
         } else if (iska == null){
             this.pennut.setText("<html> Annettua isaa <br> ei ole olemassa </html>");
+            this.sukukato.setText("sukukato");
+            this.pentujenVarit.setText("väriennustukset:");
         } else if (aiti == null){
             this.pennut.setText("<html> Annettua emoa <br> ei ole olemassa </html>");
+            this.sukukato.setText("sukukato");
+            this.pentujenVarit.setText("väriennustukset:");
         } else {
             
             this.taytaSukutaulu();
             
-            //kutsuu metodia joka ennustaa pentujen värit
-            //kutsuu metodia, joka laskee sukukatokertoimen ja asettaa sen
             this.keraaKissat();
             this.sukukato.setText("<html>" + String.valueOf(laskuri.getSukukatokerroin(this.nimet)) + "<br>" + laskuri.kerroPuuttuvista() + "</html>");
         
@@ -144,6 +148,10 @@ public class TestiAstuta implements ActionListener{
         
     }
     
+    /**
+     * Asettaa kissat sukutauluun.
+     */
+    
     public void taytaSukutaulu(){
         this.asetaKissat();
             this.asetaIsanVanhemmat();
@@ -151,6 +159,12 @@ public class TestiAstuta implements ActionListener{
             this.aseta3Polvi();
             this.aseta4Polvi();
     }
+    
+    /**
+     * Tarkistaan onko annettua kissaa ohjelman muistissa.
+     * @param nimi
+     * @return 
+     */
     
     public Kissa kissaListalla(String nimi){
         for (Kissa kisu : this.lista){
@@ -161,6 +175,10 @@ public class TestiAstuta implements ActionListener{
         
         return null;
     }
+    
+    /**
+     * "Nollaa" sukutaulun.
+     */
     
     public void aloitus(){
         this.pennut.setText("X");
@@ -196,10 +214,22 @@ public class TestiAstuta implements ActionListener{
         this.emo4_8.setText("X");
     }
     
+    /**
+     * Asettaa pentujen vanhemmat sukutauluun.
+     */
+    
     public void asetaKissat(){
         this.pennut.setText("pennut");
         this.asetaVanhemmat(this.isa1, this.emo1, this.iska, this.aiti);
     }
+    
+    /**
+     * Asettaa annetut kissat annettuihin JButtoneihin.
+     * @param far
+     * @param mor
+     * @param isukki
+     * @param mamma 
+     */
     
     public void asetaVanhemmat(JButton far, JButton mor,Kissa isukki, Kissa mamma){
         far.setText("<html>" + isukki.getNimi() + "<br>" + isukki.getSukupuoli() 
@@ -247,6 +277,11 @@ public class TestiAstuta implements ActionListener{
                 + ", " + mirri.getRotu() + " " + mirri.getVari().getVari() + "</html>");
     }
     
+    /**
+     * Asettaa kolmannen polven kissat sukutauluun, jos toisen polven kissa on
+     * olemassa.
+     */
+    
     public void aseta3Polvi(){
         
         this.asetaEiNullKissanVanhemmat(this.iska.getIsa(), this.isa3_1, this.emo3_1);
@@ -256,7 +291,7 @@ public class TestiAstuta implements ActionListener{
         
     }
     
-    //tarkistaja metodi, joka vahtii ettei null kissat aiheuta ongelmia
+    
     
     public boolean onkoNull(Kissa kissa){
         if(kissa == null){
@@ -293,8 +328,10 @@ public class TestiAstuta implements ActionListener{
         }
     }
     
+    /**
+     * Asettaa neljännen polven kissat, jos kolmannen polven kissa on olemassa.
+     */
     
-    //ei toimi jostain syystä
     public void aseta4Polvi(){
         if(this.onkoNull(this.iska.getIsa()) == false){
             this.asetaEiNullKissanVanhemmat(this.iska.getIsa().getIsa(), this.isa4_1, this.emo4_1);
@@ -317,6 +354,10 @@ public class TestiAstuta implements ActionListener{
         }
         
     }
+    
+    /**
+     * Kerää kissat sukutaulusta sukukatokertoimen laskemiseksi.
+     */
     
     private void keraaKissat() {
         
@@ -354,6 +395,11 @@ public class TestiAstuta implements ActionListener{
         
     }
     
+    /**
+     * Palauttaa tekstin, joka kertoo minkä värisiä pentuja voi varmasti tulla.
+     * @return 
+     */
+    
     public String pennuilleVarit(){
          VariKantajuus iskan = new VariKantajuus(this.iska);
          VariKantajuus aidin = new VariKantajuus(this.aiti);
@@ -366,6 +412,13 @@ public class TestiAstuta implements ActionListener{
          
          return varit;
      }
+    
+    /**
+     * Selvittää voiko tulla kuviottomia pentuja ja minkä värisinä.
+     * @param isan
+     * @param emon
+     * @return 
+     */
     
     private String kuviottomat(VariKantajuus isan, VariKantajuus emon){
         String teksti = "";
@@ -380,6 +433,13 @@ public class TestiAstuta implements ActionListener{
         
         return teksti;
     }
+    
+    /**
+     * Selvittää voiko tulla kuviollisia pentuja ja minkä värisinä.
+     * @param isan
+     * @param emon
+     * @return 
+     */
     
     private String kuviolliset(VariKantajuus isan, VariKantajuus emon){
         String teksti = "";

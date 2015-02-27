@@ -190,6 +190,11 @@ public class VariKantajuus {
         return this.tabbykuvio;
     }
     
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta
+     * ilman tietoa vanhemmista.
+     */
+    
     public void kantaakoTabbyaIlmanVanhempia(){
         this.kVari = kantaja.getVari();
         kKuvio = kVari.getKuvio();
@@ -200,6 +205,11 @@ public class VariKantajuus {
             this.tabbykuvio = false;
         }
     }
+    
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta
+     * ilman tietoa vanhemmista.
+     */
     
     public void kantaakoDiluutiotaIlmanVanhempia(){
         this.kVari = kantaja.getVari();
@@ -212,6 +222,11 @@ public class VariKantajuus {
         }
     }
     
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta
+     * ilman tietoa vanhemmista.
+     */
+    
     public void kantaakoTaysvariaIlmanVanhempia(){
         this.kVari = kantaja.getVari();
         kPohjavari = kVari.getPohjavari();
@@ -223,6 +238,11 @@ public class VariKantajuus {
         }
     }
     
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta
+     * ilman tietoa vanhemmista.
+     */
+    
     public void kantaakoKuviottomuuttaIlmanVanhempia(){
         this.kVari = kantaja.getVari();
         kKuvio = kVari.getKuvio();
@@ -233,6 +253,11 @@ public class VariKantajuus {
             this.kuviottomuus = false;
         }
     }
+    
+    /**
+     * Asettaa totuusarvon siitä kantaako kysytty kissa kyseistä ominaisuutta
+     * ilman tietoa vanhemmista.
+     */
     
     public void kantaakoKuviollisuuttaIlmanVanhempia(){
         this.kVari = kantaja.getVari();

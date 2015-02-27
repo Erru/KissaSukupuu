@@ -36,10 +36,20 @@ public class SukukatoLaskuri {
         }
     }
     
+    /**
+     * Laskee sukukatokertoimen. Asettaa sukukatokertoimeksi nollan, jos taulussa
+     * ei ole yhtään kissoja (edes vanhempia kissalle).
+     */
+    
     public void laskeSukukatokerroin(){
         double uniikit = this.uniikitNimet.size();
         double kaikki = this.kissat.size() - puuttuvat;
-        this.sukukatokerroin = uniikit / kaikki;
+        if(kaikki == 0){
+            this.sukukatokerroin = 0.0;
+        } else {
+            this.sukukatokerroin = uniikit / kaikki;
+        }
+        
     }
     
     public double getSukukatokerroin(ArrayList<String> lista){
@@ -51,6 +61,11 @@ public class SukukatoLaskuri {
     public ArrayList<String> getUniikitNimet(){
         return this.uniikitNimet;
     }
+    
+    /**
+     * Palauttaa tiedon siitä kuinka monta kissaa puuttuu täydellisestä sukutaulusta.
+     * @return 
+     */
     
     public String kerroPuuttuvista(){
         return " <html> tiedossa olevien <br> kissojen mukaan, <br> " + this.puuttuvat 

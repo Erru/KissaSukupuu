@@ -25,6 +25,12 @@ public class Kissat {
         return this.kaikki;
     }
     
+    /**
+     * Varuilta luotu metodi kissan poistoa varten. Ohjelma ei käytä tätä metodia
+     * tällä hetkellä.
+     * @param kissa 
+     */
+    
     public void poistaKissa(Kissa kissa){
         ArrayList<Kissa> poistettava = new ArrayList<>();
         

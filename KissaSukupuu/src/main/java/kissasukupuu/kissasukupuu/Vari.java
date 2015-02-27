@@ -30,6 +30,12 @@ public class Vari {
         }
     }
     
+    /**
+     * Pilkkoo kissan värin pohjaväriin ja kuvioon, jos väri on tarpeeksi pitkä
+     * sisältääkseen kuvion ja palauttaa kuvion tai tiedon kuviottomuudesta.
+     * @return 
+     */
+    
     public String getKuvio(){
         if(!vari.equals("X")){
             

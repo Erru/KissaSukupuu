@@ -14,7 +14,8 @@ import kissasukupuu.kissasukupuu.VariKantajuus;
 
 /**
  *Luokka ottaa hakukenttään laitetun kissan nimen ja etsii ja luo sen kissan
- *  sukutaulun. 
+ *  sukutaulun. Luokka myös laskee kissalle sukukatokertoimen tunnettujen kissojen
+ *  mukaan ja kertoo mitä värejä se kantaa varmasti.
  */
 public class HaeKissa implements ActionListener{
     
@@ -128,7 +129,7 @@ public class HaeKissa implements ActionListener{
         }
     }
     
-    //huolehdi, että ne vanhemmat joita ei löydy tulevat X merkeillä sukutauluun
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         this.aloitus();
@@ -157,7 +158,12 @@ public class HaeKissa implements ActionListener{
         this.hakukentta.setText("nimi");
         
         this.keraaKissat();
-        this.sukukato.setText("<html>" + String.valueOf(laskuri.getSukukatokerroin(this.nimet)) + "<br>" + laskuri.kerroPuuttuvista() + "</html>");
+        if(laskuri.getSukukatokerroin(nimet) == 0.0){
+            this.sukukato.setText("<html> tyhjä sukutaulu, <br> sukukatokerrointa <br> ei voida laskea </html>");
+        } else {
+            this.sukukato.setText("<html>" + String.valueOf(laskuri.getSukukatokerroin(this.nimet)) + "<br>" + laskuri.kerroPuuttuvista() + "</html>");
+        
+        }
         
         this.varit.setText(this.kannettavatVarit());
         
@@ -210,7 +216,8 @@ public class HaeKissa implements ActionListener{
         if(this.kissa == null){
             this.haettu.setText("<html> Ei löydy <br>'" + this.hakukentta.getText() 
                 + "'<br> nimistä kissaa, <br>tarkista kirjoitusasu <br>tai lisää kissa </html>");
-        
+            this.sukukato.setText("sukukato");
+            this.varit.setText("väriennustukset:");
         } else {
         this.haettu.setText("<html>" + this.kissa.getNimi() + "<br>" + this.kissa.getSukupuoli() 
                 + ", " + this.kissa.getRotu() + " " + this.kissa.getVari().getVari() + "</html>");
@@ -218,7 +225,7 @@ public class HaeKissa implements ActionListener{
     }
     
     /**
-     * Asettaa isän tiedot sukutauluun. Jos isää ei löydy, ei tee mitään.
+     * Asettaa isän tiedot sukutauluun.
      */
     
     public void asetaIsa(){
@@ -230,7 +237,7 @@ public class HaeKissa implements ActionListener{
     }
     
     /**
-     * Asettaa emon tiedot sukutauluun. Jos emoa ei löydy, ei tee mitään.
+     * Asettaa emon tiedot sukutauluun.
      */
     
     public void asetaEmo(){
@@ -251,6 +258,10 @@ public class HaeKissa implements ActionListener{
         this.asetaEiNullKissanVanhemmat(this.kissa.getEmo(), this.isa2_2, this.emo2_2);
     }
     
+    /**
+     * Asettaa 3 polven kissat sukutauluun.
+     */
+    
     public void asetaCol4(){
         
         if(this.onkoNull(this.kissa.getIsa()) == false){
@@ -265,6 +276,10 @@ public class HaeKissa implements ActionListener{
         
         
     }
+    
+    /**
+     * Asettaa 4 polven kissat sukutauluun.
+     */
     
     public void asetaCol5(){
         
@@ -292,12 +307,25 @@ public class HaeKissa implements ActionListener{
         
     }
     
+    /**
+     * Tarkistaa onko annettua kissaa olemassa.
+     * @param kissa
+     * @return 
+     */
+    
      public boolean onkoNull(Kissa kissa){
         if(kissa == null){
             return true;
         } 
         return false;
     }
+     
+     /**
+      * Asettaa annetun kissan vanhemmat JButtoneiden teksteihin, jos kissa on olemassa.
+      * @param kissa
+      * @param isa
+      * @param emo 
+      */
     
      public void asetaEiNullKissanVanhemmat(Kissa kissa, JButton isa, JButton emo){
         if (this.onkoNull(kissa) == false){
@@ -305,7 +333,15 @@ public class HaeKissa implements ActionListener{
             Kissa mamma = kissa.getEmo();
             this.asetaOlemassaOlevat(isa, emo, isukki, mamma);
         }
-        }
+    }
+     
+     /**
+      * Asettaa annetut kissat JButtoneihin, jos ne ovat olemassa.
+      * @param poikanappi
+      * @param tyttonappi
+      * @param kolli
+      * @param naaras 
+      */
      
      public void asetaOlemassaOlevat(JButton poikanappi, JButton tyttonappi, Kissa kolli, 
             Kissa naaras){
@@ -318,12 +354,17 @@ public class HaeKissa implements ActionListener{
         } else if (kisu1 == null){
             this.asetaKissa(tyttonappi, kisu2);
         } else if (kisu2 == null){
-            //aseta isanisa
             this.asetaKissa(poikanappi, kisu1);
         } else {
             this.asetaVanhemmat(poikanappi, tyttonappi, kisu1, kisu2);
         }
     }
+     
+     /**
+      * Asettaa annetun kissan JButtoniin.
+      * @param annettu
+      * @param mirri 
+      */
      
      public void asetaKissa(JButton annettu, Kissa mirri){
         annettu.setText("<html>" + mirri.getNimi() + "<br>" + mirri.getSukupuoli() 
@@ -336,6 +377,11 @@ public class HaeKissa implements ActionListener{
         mor.setText("<html>" + mamma.getNimi() + "<br>" + mamma.getSukupuoli() 
                 + ", " + mamma.getRotu() + " " + mamma.getVari().getVari() + "</html>");
     }
+     
+     /**
+      * Kerää listan kissoista, jotka on asetettu sukutauluun sukukatokertoimen
+      * laskemiseksi.
+      */
      
      private void keraaKissat() {
         
@@ -372,6 +418,12 @@ public class HaeKissa implements ActionListener{
         
         
     }
+     
+     /**
+      * Selvittää mitä värejä kissa kantaa ja tuottaa niistä String muotoisen
+      * kokonaisuuden käyttäjälle esitettäväksi.
+      * @return 
+      */
      
      public String kannettavatVarit(){
          VariKantajuus kantaja = new VariKantajuus(this.kissa);
