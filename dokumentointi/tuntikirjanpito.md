@@ -64,3 +64,13 @@ n. 1,5h toiminnallisuutta käyttöliittymään (LisaaKissa ja LisaaTieto).
 ######27.2.2015
 30min käyttöohjeiden kirjoitusta.
 
+25min javadocia.
+
+10min rakennekuvausta ja 15min luokkakaaviota.
+
+5min aihemäärityspäivitystä.
+
+ 30min JUnit testit ja testausdokumentaatio.
+
+30min yhteensä checkstyle ja jar
+
