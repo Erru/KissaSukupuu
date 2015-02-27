@@ -1,9 +1,6 @@
 ###Aihe: 
 
-Kissa sukupuu. Sukupuu ohjelma, johon voi syöttää kissoja vanhempineen ja hakea kissoja nimeltä sukupuineen ja sukusiitos- 
-ja sukukatokertoimen kera. Mahdollista myös tehdä testiristeytyksiä sukusiitos- ja sukukatokertoimen kera. Lisättävissä myös
-resessiivisten ulkoasugeenien kantajuus vanhempien perusteella ja testiristeytyksiin todennäköisimmät pentujen värit sukupuun
-perusteella.
+Kissa sukupuu. Sukupuu ohjelma, johon voi syöttää kissoja vanhempineen ja hakea kissoja nimeltä sukupuineen sukukatokertoimen kera. Kissojen sukupuiden yhteydessä näytetään myös mitä värejä kissa varmasti kantaa oma ja vanhempiensa ulkoasujen perusteella. Mahdollista myös tehdä testiristeytyksiä sukukatokertoimen kera, jolloin ennustetaan myös varmasti mahdollisia pentujen värejä vanhempien värikantajuuksien perusteella.
 
 ###Käyttäjät: 
 
@@ -12,6 +9,10 @@ Kissakasvattajat
 ###Kaikkien käyttäjien toiminnot: 
 
 kissan lisäys
+
+kissan tietojen lisäys
+
 kissan haku
+
 kissojen testiristeytys
 
